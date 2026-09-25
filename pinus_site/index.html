@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#121313">
+<title>PINUS — Estante A-Frame</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@400;500;600;700&display=swap');
+
+:root{
+  --ink:#181817;
+  --muted:#6d6a64;
+  --paper:#f7f6f2;
+  --white:#fff;
+  --line:#d8d5ce;
+  --blue:#a9c6d3;
+  --blue-soft:#dfecef;
+  --orange:#ad410b;
+  --dark:#121313;
+  --max:1220px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"DM Sans",Arial,sans-serif}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%;height:auto;image-rendering:auto;-webkit-user-drag:none}
+button{font:inherit}
+
+.nav{
+  position:fixed;z-index:20;top:0;left:0;right:0;
+  padding:18px 5vw;display:flex;justify-content:space-between;align-items:center;
+  background:rgba(18,19,19,.82);backdrop-filter:blur(14px);
+  color:#fff;border-bottom:1px solid rgba(255,255,255,.12)
+}
+.logo{font-family:Manrope,sans-serif;font-size:18px;letter-spacing:.16em;font-weight:700}
+.navlinks{display:flex;gap:25px;font-size:13px;letter-spacing:.06em}
+.navlinks a{opacity:.82;transition:.2s}.navlinks a:hover{opacity:1}
+.menu{display:none;background:none;border:0;color:#fff;font-size:24px}
+
+.hero{min-height:100vh;position:relative;display:grid;place-items:center;overflow:hidden;color:#fff}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;background:#111;filter:brightness(.48);image-rendering:auto}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,.58))}
+.hero-inner{position:relative;z-index:2;width:min(var(--max),88vw);padding-top:70px;text-align:center}
+.eyebrow{display:flex;justify-content:space-between;border-bottom:2px solid #a8c9df;padding-bottom:22px;font-size:13px;letter-spacing:.12em;text-transform:uppercase}
+.hero h1{font-size:clamp(76px,13vw,170px);font-weight:500;letter-spacing:.03em;line-height:.9;margin:25vh 0 10px}
+.hero p{font-size:clamp(18px,2vw,27px);margin:0}
+.hero-bottom{position:absolute;z-index:2;bottom:48px;left:6%;right:6%;border-top:2px solid #a8c9df;padding-top:26px;text-align:center;font-size:14px}
+
+section{padding:110px 6vw}
+.container{max-width:var(--max);margin:auto}
+.kicker{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+h2{font-family:Manrope,sans-serif;font-size:clamp(38px,5vw,70px);line-height:1.02;font-weight:500;margin:0 0 26px;letter-spacing:-.035em}
+.lead{font-size:clamp(18px,2vw,24px);line-height:1.45;max-width:800px;color:#363530}
+.orange-line{height:4px;width:285px;background:var(--orange);margin:34px 0}
+
+.split{display:grid;grid-template-columns:1fr 1fr;min-height:620px}
+.split .copy{padding:90px 7vw;display:flex;flex-direction:column;justify-content:center}
+.split img{width:100%;height:100%;object-fit:contain;object-position:center;background:#f7f6f2;image-rendering:auto}
+.split.reverse{direction:rtl}.split.reverse .copy{direction:ltr}
+.split.reverse img{direction:ltr}
+
+.intro{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:center}
+.intro img{width:100%;aspect-ratio:1/1.05;object-fit:contain;object-position:center;background:#f7f6f2;image-rendering:auto}
+
+.adapt{background:#fff}
+.bigstatement{font-size:clamp(55px,8vw,115px);line-height:.86;letter-spacing:-.055em;font-weight:500;max-width:1200px}
+.smallnote{margin-top:35px;font-size:18px;color:var(--muted);max-width:900px}
+
+.diagram{background:#fff}
+.diagram-img{display:block;margin:45px auto 0;max-width:1100px;width:100%;height:auto;aspect-ratio:16/9;object-fit:contain;background:#fff;border:1px solid var(--line);image-rendering:auto}
+
+.gravity{background:#f2f1ed}
+.steps{display:grid;gap:16px;margin-top:48px;max-width:1050px}
+.step{display:grid;grid-template-columns:70px 1fr;align-items:center;background:var(--orange);color:#fff;padding:22px 28px;clip-path:polygon(0 0,94% 0,100% 50%,94% 100%,0 100%)}
+.step strong{font-size:13px;letter-spacing:.1em}.step span{font-size:22px}
+
+.uses-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:45px}
+.use{background:var(--blue-soft);padding:38px 32px;min-height:300px;transition:.25s}
+.use:hover{transform:translateY(-6px);box-shadow:0 15px 35px rgba(0,0,0,.08)}
+.use-num{font-size:12px;letter-spacing:.1em}.use h3{font-size:31px;line-height:1.05;font-weight:500;margin:35px 0 20px}.use p{font-size:17px;line-height:1.45}
+
+.materials{background:#fff}
+.material-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:35px;margin-top:45px}
+.material img{width:100%;aspect-ratio:1.6;object-fit:contain;object-position:center;background:#f7f6f2;image-rendering:auto}.material h3{font-size:30px;font-weight:500;margin:20px 0 8px}.material p{font-size:17px;line-height:1.4;color:#555}
+
+.why{display:grid;grid-template-columns:1fr 1fr;margin-top:50px;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.reason{padding:42px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);min-height:190px}
+.reason h3{font-size:31px;font-weight:500;margin:0 0 15px}.reason p{font-size:18px;line-height:1.45;margin:0;color:#4d4b46}
+
+.gallery{background:var(--dark);color:#fff}
+.gallery-head{display:flex;justify-content:space-between;align-items:end;gap:30px}
+.gallery-head .lead{color:#bbb;max-width:620px}
+.gallery-wrap{position:relative;margin-top:45px}
+.gallery-main{width:100%;height:min(70vh,720px);object-fit:contain;object-position:center;background:#0d0e0e;image-rendering:auto}
+.gallery-controls{display:flex;gap:10px;position:absolute;right:20px;bottom:20px}
+.gallery-controls button{width:48px;height:48px;border:1px solid rgba(255,255,255,.5);background:rgba(0,0,0,.45);color:#fff;cursor:pointer;border-radius:50%}
+.gallery-controls button:hover{background:#fff;color:#111}
+.caption{padding:18px 0;display:flex;justify-content:space-between;color:#bbb;font-size:13px;letter-spacing:.06em}
+
+.final{padding:0;background:#fff}
+.final-grid{display:grid;grid-template-columns:1fr 1.1fr}
+.final-copy{padding:100px 7vw;display:flex;flex-direction:column;justify-content:center}
+.final-copy h2{font-size:clamp(50px,6vw,90px)}
+.final img{width:100%;height:100%;object-fit:contain;object-position:center;background:#f7f6f2;min-height:650px;image-rendering:auto}
+.final-list{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px;border-top:1px solid var(--line);padding-top:22px}
+.final-list div{font-size:18px}.final-list strong{display:block;font-size:25px;margin-bottom:5px}
+
+footer{background:#121313;color:#bdbbb5;padding:28px 6vw;display:flex;justify-content:space-between;gap:20px;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+
+.reveal{opacity:0;transform:translateY(25px);transition:opacity .8s ease,transform .8s ease}.reveal.visible{opacity:1;transform:none}
+
+@media(max-width:800px){
+  .navlinks{display:none}.menu{display:block}
+  .nav.open .navlinks{display:flex;position:absolute;top:62px;left:0;right:0;background:#121313;padding:18px 6vw;flex-direction:column}
+  .eyebrow{font-size:10px}
+  .hero h1{margin-top:25vh}
+  section{padding:75px 6vw}
+  .split,.intro,.final-grid{grid-template-columns:1fr}
+  .split .copy{padding:65px 8vw;min-height:430px}
+  .split img{min-height:420px;height:auto;aspect-ratio:16/9}
+  .split.reverse{direction:ltr}
+  .uses-grid,.material-grid{grid-template-columns:1fr}
+  .use{min-height:240px}
+  .why{grid-template-columns:1fr}
+  .gallery-main{height:auto;aspect-ratio:16/9}
+  .final img{min-height:0;aspect-ratio:16/9;order:-1}
+  .final-copy{padding:65px 8vw}
+  .final-list{grid-template-columns:1fr}
+  footer{flex-direction:column}
+}
+
+/* Imagens: preservar o quadro inteiro e a resolução original das imagens 1920x1080. */
+.content img, .gallery img, .final img {
+  max-width:100%;
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a class="logo" href="#inicio">PINUS</a>
+  <div class="navlinks">
+    <a href="#proposta">Proposta</a>
+    <a href="#estrutura">Estrutura</a>
+    <a href="#usos">Usos</a>
+    <a href="#materiais">Materiais</a>
+    <a href="#solucao">Solução</a>
+  </div>
+  <button class="menu" aria-label="Abrir menu">☰</button>
+</nav>
+
+<header class="hero" id="inicio">
+  <img class="hero-bg" src="assets/slide-1.png" alt="Estante A-Frame Pinus">
+  <div class="hero-inner">
+    <div class="eyebrow"><span>Equipe Pinus</span><span>Concurso Moveleiro SESI 2026</span></div>
+    <h1>PINUS</h1>
+    <p>Estante A-Frame / Escada</p>
+  </div>
+  <div class="hero-bottom">Um móvel modular para acompanhar diferentes usos da casa.</div>
+</header>
+
+<section id="proposta">
+  <div class="container intro reveal">
+    <div>
+      <div class="kicker">01 — Conceito</div>
+      <h2>Um móvel que acompanha a casa</h2>
+      <p class="lead">O público são pessoas em casa que precisam reorganizar, apoiar e expor objetos em momentos diferentes.</p>
+      <div class="orange-line"></div>
+      <h3 style="font-size:30px;font-weight:500">Uma estrutura, mais de uma função</h3>
+      <p class="lead" style="font-size:18px">A mesma peça pode servir como estante de livros, mesa de apoio ou expositor de produtos. O uso acompanha a atividade e o espaço disponível.</p>
+    </div>
+    <img src="assets/slide-2.png" alt="Estante A-Frame em ambiente doméstico">
+  </div>
+</section>
+
+<section class="adapt reveal">
+  <div class="container">
+    <div class="kicker">02 — Ideia central</div>
+    <div class="bigstatement">UM MÓVEL<br>QUE SE ADAPTA<br>SEM COMPLICAR</div>
+    <p class="lead" style="margin-top:35px">A proposta responde à falta de um móvel doméstico funcional, fácil de montar e ajustável. Também deve mudar de uso sem exigir ferramentas complexas.</p>
+    <p class="smallnote">NECESSIDADE REAL · FLEXIBILIDADE NO USO COTIDIANO</p>
+  </div>
+</section>
+
+<section class="diagram">
+  <div class="container reveal">
+    <div class="kicker">03 — Relações do projeto</div>
+    <h2>Conexões orientam o projeto</h2>
+    <p class="lead">O desenho articula a união entre peças, a adaptação à rotina e os critérios do desafio.</p>
+    <img class="diagram-img" src="assets/slide-4.png" alt="Diagrama das conexões do projeto">
+  </div>
+</section>
+
+<section class="gravity">
+  <div class="container reveal">
+    <div class="kicker">04 — Encaixe</div>
+    <h2>O encaixe por gravidade trava a estrutura</h2>
+    <p class="lead">A estrutura lateral forma um “A” inclinado. As prateleiras usam rebaixos ou entalhes nas extremidades para abraçar as travessas laterais.</p>
+    <div class="steps">
+      <div class="step"><strong>01</strong><span>Peso sobre a prateleira</span></div>
+      <div class="step"><strong>02</strong><span>Entalhes abraçam as travessas</span></div>
+      <div class="step"><strong>03</strong><span>A carga pressiona o encaixe para baixo</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="split reveal">
+  <div class="copy">
+    <div class="kicker">05 — Montagem</div>
+    <h2>Poucas peças,<br>montagem simples</h2>
+    <p class="lead">A estrutura parte de peças geométricas simples. A combinação de madeira maciça, MDF e conectores impressos em 3D é uma possibilidade para compor o móvel.</p>
+    <div class="orange-line"></div>
+    <p class="lead" style="font-size:18px">A montagem foi pensada para ser rápida e dispensar ferramentas complexas.</p>
+  </div>
+  <img src="assets/slide-6.png" alt="Peças de madeira para montagem">
+</div>
+
+<section id="estrutura">
+  <div class="container reveal">
+    <div class="kicker">06 — Modularidade</div>
+    <h2>Uma estrutura, três usos</h2>
+    <p class="lead">A forma A-Frame pode assumir funções distintas dentro de casa, sem deixar de ser a mesma estrutura modular.</p>
+    <div class="uses-grid">
+      <article class="use"><span class="use-num">01</span><h3>Estante de livros</h3><p>Organização vertical para ambientes domésticos.</p></article>
+      <article class="use"><span class="use-num">02</span><h3>Mesa de apoio ou escrivaninha</h3><p>Superfície de trabalho ajustada à altura desejada.</p></article>
+      <article class="use"><span class="use-num">03</span><h3>Expositor de produtos</h3><p>Apresentação de objetos, peças e materiais.</p></article>
+    </div>
+  </div>
+</section>
+
+<div class="split reverse reveal">
+  <div class="copy">
+    <div class="kicker">07 — Ajuste</div>
+    <h2>As prateleiras mudam conforme a necessidade</h2>
+    <p class="lead">As prateleiras podem ser trocadas de altura facilmente. Assim, o móvel pode ser reconfigurado para diferentes objetos, atividades e ambientes.</p>
+    <div class="orange-line"></div>
+    <p class="lead" style="font-size:18px">O ajuste acontece na própria disposição das peças: mudar a altura ajuda a acomodar o que será guardado, apoiado ou exposto.</p>
+  </div>
+  <img src="assets/slide-8.png" alt="Ajuste de prateleira">
+</div>
+
+<section class="materials" id="materiais">
+  <div class="container reveal">
+    <div class="kicker">08 — Materiais</div>
+    <h2>Materiais que equilibram resistência e viabilidade</h2>
+    <p class="lead">Cada material pode contribuir de um modo diferente para a estrutura, as superfícies planas e as conexões.</p>
+    <div class="material-grid">
+      <article class="material"><img src="assets/slide-9.png" alt="Materiais do projeto"><h3>Madeira maciça</h3><p>Presença, resistência e durabilidade na estrutura.</p></article>
+      <article class="material"><img src="assets/slide-9.png" alt="MDF do projeto" style="object-position:center"><h3>MDF</h3><p>Alternativa para prateleiras e componentes planos.</p></article>
+      <article class="material"><img src="assets/slide-9.png" alt="Conectores impressos em 3D" style="object-position:right"><h3>Conectores impressos em 3D</h3><p>União rápida e possibilidade de substituição ou ajuste.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="solucao">
+  <div class="container reveal">
+    <div class="kicker">09 — Síntese</div>
+    <h2>Por que a solução funciona</h2>
+    <p class="lead">O projeto reúne adaptação de uso, uma conexão estrutural simples e componentes pensados para manutenção e reaproveitamento.</p>
+    <div class="why">
+      <article class="reason"><h3>Funcionalidade</h3><p>O móvel muda de configuração e de uso conforme a necessidade.</p></article>
+      <article class="reason"><h3>Durabilidade</h3><p>O peso reforça o encaixe por gravidade.</p></article>
+      <article class="reason"><h3>Sustentabilidade</h3><p>Peças desmontáveis facilitam manutenção, troca e reaproveitamento.</p></article>
+      <article class="reason"><h3>Identidade</h3><p>A equipe Pinus transforma uma conexão simples em uma solução doméstica versátil.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="gallery">
+  <div class="container reveal">
+    <div class="gallery-head">
+      <div><div class="kicker" style="color:#999">10 — Galeria</div><h2>Proposta Pinus</h2></div>
+      <p class="lead">Um móvel que se adapta: encaixe simples, montagem rápida, prateleiras removíveis e uso versátil.</p>
+    </div>
+    <div class="gallery-wrap">
+      <img id="galleryImage" class="gallery-main" src="assets/slide-11.png" alt="Proposta Pinus">
+      <div class="gallery-controls"><button id="prev">←</button><button id="next">→</button></div>
+    </div>
+    <div class="caption"><span id="caption">Proposta Pinus — um móvel que se adapta</span><span id="counter">1 / 2</span></div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="final-grid">
+    <div class="final-copy reveal">
+      <div class="kicker">PINUS · CONCLUSÃO</div>
+      <h2>Um móvel que se adapta.</h2>
+      <div class="orange-line"></div>
+      <p class="lead">A estante A-Frame combina encaixe simples, montagem rápida e uso versátil. Tem estrutura modular, prateleiras removíveis e ajustáveis, com montagem por encaixe por gravidade, sem ferramentas complexas.</p>
+      <p>Madeira maciça, MDF e conectores impressos em 3D.</p>
+      <div class="final-list">
+        <div><strong>Livros</strong>Organiza e expõe.</div>
+        <div><strong>Mesa</strong>Acompanha a rotina.</div>
+        <div><strong>Expositor</strong>Valoriza produtos.</div>
+      </div>
+    </div>
+    <img src="assets/slide-11.png" alt="Estante Pinus em diferentes configurações">
+  </div>
+</section>
+
+<footer>
+  <span>PINUS · ESTANTE A-FRAME / ESCADA</span>
+  <span>CONCURSO MOVELEIRO SESI 2026</span>
+</footer>
+
+<script>
+const nav=document.getElementById('nav');
+document.querySelector('.menu').addEventListener('click',()=>nav.classList.toggle('open'));
+document.querySelectorAll('.navlinks a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+const slides=[
+  ['assets/slide-11.png','Proposta Pinus — um móvel que se adapta'],
+  ['assets/slide-1.png','PINUS — Estante A-Frame / Escada']
+];
+let current=0;
+const image=document.getElementById('galleryImage');
+const caption=document.getElementById('caption');
+const counter=document.getElementById('counter');
+function updateGallery(){
+  image.style.opacity=0;
+  setTimeout(()=>{
+    image.src=slides[current][0];
+    caption.textContent=slides[current][1];
+    counter.textContent=(current+1)+' / '+slides.length;
+    image.style.opacity=1;
+  },160);
+}
+document.getElementById('next').onclick=()=>{current=(current+1)%slides.length;updateGallery()};
+document.getElementById('prev').onclick=()=>{current=(current-1+slides.length)%slides.length;updateGallery()};
+image.style.transition='opacity .16s ease';
+</script>
+</body>
+</html>
